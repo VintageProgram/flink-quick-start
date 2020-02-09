@@ -165,6 +165,12 @@
                 <version>18.0-${flink.shaded.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-shaded-jackson</artifactId>
+                <version>${jackson.version}-${flink.shaded.version}</version>
+            </dependency>
+
             <!-- This manages the 'javax.annotation' annotations (JSR305) -->
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
