@@ -41,7 +41,7 @@
         <scala.macros.version>2.1.0</scala.macros.version>
         <!-- Default scala versions, must be overwritten by build profiles, so we set something
         invalid here -->
-        <scala.version>2.13.1</scala.version>
+        <scala.version>2.11.11</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
         <chill.version>0.7.6</chill.version>
         <zookeeper.version>3.4.10</zookeeper.version>
