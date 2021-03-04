@@ -91,7 +91,8 @@ public class TwitterExample {
 				// selecting English tweets and splitting to (word, 1)
 				.flatMap(new SelectEnglishAndTokenizeFlatMap())
 				// group by words and sum their occurrences
-				.keyBy(0).sum(1);
+				.keyBy(0)
+				.sum(1);
 
 		// emit result
 		if (params.has("output")) {
@@ -131,7 +132,7 @@ public class TwitterExample {
 				jsonParser = new ObjectMapper();
 			}
 			JsonNode jsonNode = jsonParser.readValue(value, JsonNode.class);
-			boolean isEnglish = jsonNode.has("user") && jsonNode.get("user").has("lang") && jsonNode.get("user").get("lang").asText().equals("en");
+			boolean isEnglish = jsonNode.has("user") && jsonNode.get("user").has("lang") && "en".equals(jsonNode.get("user").get("lang").asText());
 			boolean hasText = jsonNode.has("text");
 			if (isEnglish && hasText) {
 				// message of tweet
@@ -141,7 +142,7 @@ public class TwitterExample {
 				while (tokenizer.hasMoreTokens()) {
 					String result = tokenizer.nextToken().replaceAll("\\s*", "").toLowerCase();
 
-					if (!result.equals("")) {
+					if (!"".equals(result)) {
 						out.collect(new Tuple2<>(result, 1));
 					}
 				}

@@ -8,8 +8,7 @@
     <parent>
         <artifactId>flink-examples</artifactId>
         <groupId>com.xavier.flink</groupId>
-        <version>1.9.0</version>
-        <relativePath>..</relativePath>
+        <version>1.0</version>
     </parent>
 
     <artifactId>flink-examples-streaming</artifactId>
@@ -17,31 +16,36 @@
     <packaging>jar</packaging>
 
     <dependencies>
-
         <!-- core dependencies -->
-
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
-            <version>${project.version}</version>
+            <version>${flink.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-scala_${scala.binary.version}</artifactId>
-            <version>${project.version}</version>
+            <version>${flink.version}</version>
         </dependency>
 
+        <!-- flink rocksdb -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-statebackend-rocksdb_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+
+        <!-- Add flink connector dependencies here. They must be in the default scope (compile). -->
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-twitter_${scala.binary.version}</artifactId>
-            <version>${project.version}</version>
+            <version>${flink.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka-0.10_${scala.binary.version}</artifactId>
-            <version>${project.version}</version>
+            <version>${flink.version}</version>
         </dependency>
     </dependencies>
 </project>
