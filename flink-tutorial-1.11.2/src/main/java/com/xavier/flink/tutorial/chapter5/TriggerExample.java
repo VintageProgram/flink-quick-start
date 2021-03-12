@@ -29,7 +29,7 @@ public class TriggerExample {
 
         // 读入股票数据流
         DataStream<StockPrice> stockStream = env
-                .addSource(new StockSource("stock/stock-test.csv"));
+                .addSource(new StockSource("stock/stock-tick-20200108.csv"));
 
         DataStream<Tuple2<String, Double>> average = stockStream
                 .keyBy(s -> s.symbol)

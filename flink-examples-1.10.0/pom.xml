@@ -22,6 +22,35 @@
         <module>flink-examples-table</module>
     </modules>
 
+    <properties>
+        <flink.version>1.10.0</flink.version>
+        <flink.shaded.version>7.0</flink.shaded.version>
+    </properties>
+
+    <dependencyManagement>
+        <!-- WARN:
+        DO NOT put 	guava,
+                    protobuf,
+                    asm,
+                    netty
+                here. It will overwrite Hadoop's guava dependency (even though we handle it
+        separately in the flink-shaded-hadoop-2 dependency).
+        -->
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-shaded-asm-6</artifactId>
+                <version>6.2.1-${flink.shaded.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-shaded-guava</artifactId>
+                <version>18.0-${flink.shaded.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Flink dependencies -->
         <dependency>

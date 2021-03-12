@@ -19,7 +19,6 @@ import org.apache.flink.util.OutputTag;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Random;
 import java.util.UUID;
@@ -29,14 +28,12 @@ import java.util.UUID;
  *
  * @author Xavier Li
  */
+@SuppressWarnings("Duplicates")
 public class AllowLatenessExample {
 
     /** EventTime 事件流中迟到数据 Tag */
     private static final OutputTag<Tuple3<String, Long, Integer>> LATE_OUTPUT_TAG = new OutputTag<Tuple3<String, Long, Integer>>("late-data") {
     };
-
-    /** immutable and thread-safe */
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
