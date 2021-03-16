@@ -13,6 +13,7 @@
     <modules>
         <module>flink-examples-1.10.0</module>
         <module>flink-tutorial-1.11.2</module>
+        <module>community-cn</module>
     </modules>
 
     <properties>
@@ -38,12 +39,9 @@
         <mockito.version>2.21.0</mockito.version>
         <powermock.version>2.0.0-RC.4</powermock.version>
 
-        <hadoop.version>2.4.1</hadoop.version>
-        <metrics.version>3.1.5</metrics.version>
         <guava.version>18.0</guava.version>
-        <akka.version>2.5.21</akka.version>
-        <zookeeper.version>3.4.10</zookeeper.version>
-        <curator.version>2.12.0</curator.version>
+
+        <hadoop.version>2.7.6</hadoop.version>
         <!--
             Hive 2.3.4 relies on Hadoop 2.7.2 and later versions.
             For Hadoop 2.7, the minor Hadoop version supported for flink-shaded-hadoop-2-uber is 2.7.5
@@ -53,7 +51,6 @@
 
     <!-- this section defines the module versions that are used if nothing else is specified. -->
     <dependencyManagement>
-
         <dependencies>
             <!-- This manages the 'javax.annotation' annotations (JSR305) -->
             <dependency>

@@ -88,7 +88,7 @@ public class TemporalTableJoinExample {
         tEnv.createTemporarySystemFunction(
                 // 函数名
                 "item",
-                // 指定时间属性和Key，Key是唯一标识，时间属性用来标识不同的版本
+                // 在 itemTable 表上创建临时表函数，指定时间属性和Key，Key是唯一标识，时间属性用来标识不同的版本
                 itemTable.createTemporalTableFunction($("version_ts"), $("item_id")));
 
         // 对 temporary table 做 join
