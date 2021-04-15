@@ -22,6 +22,7 @@ import java.time.Duration;
 import java.util.Calendar;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 处理迟到的数据
@@ -37,7 +38,7 @@ public class AllowLatenessExample {
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setParallelism(1);
+        env.setParallelism(2);
         // 使用 EventTime 时间语义
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
@@ -54,10 +55,10 @@ public class AllowLatenessExample {
         // discardLateData(input);
 
         // 2. 将迟到数据发送到另一个流
-        // assignToAnotherStream(input);
+        assignToAnotherStream(input);
 
         // 3. 重新执行一次计算，将迟到数据考虑进来，更新计算结果
-        reComputeResult(input);
+        // reComputeResult(input);
 
         env.execute("late elements");
     }
@@ -153,10 +154,11 @@ public class AllowLatenessExample {
                 long curTime = System.currentTimeMillis();
 
                 // 人为的增加一些延迟
-                long eventTime = curTime + rand.nextInt(10000);
+                long eventTime = curTime + rand.nextInt(30000);
 
+                // ctx.collect(Tuple3.of(("1", eventTime, 1));
                 ctx.collect(Tuple3.of(UUID.randomUUID().toString(), eventTime, 1));
-                Thread.sleep(100);
+                TimeUnit.MILLISECONDS.sleep(100);
             }
         }
 

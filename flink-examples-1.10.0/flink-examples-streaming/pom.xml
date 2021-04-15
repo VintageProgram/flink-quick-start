@@ -19,6 +19,11 @@
         <!-- core dependencies -->
         <dependency>
             <groupId>org.apache.flink</groupId>
+            <artifactId>flink-java</artifactId>
+            <version>1.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
@@ -34,7 +39,6 @@
             <artifactId>flink-statebackend-rocksdb_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
-
 
         <!-- Add flink connector dependencies here. They must be in the default scope (compile). -->
         <dependency>

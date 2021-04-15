@@ -43,56 +43,55 @@ import org.apache.flink.api.java.ExecutionEnvironment;
  * }
  * </pre>
  */
-@SuppressWarnings("serial")
 public class PiEstimation implements java.io.Serializable {
 
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-		final long numSamples = args.length > 0 ? Long.parseLong(args[0]) : 1000000;
+        final long numSamples = args.length > 0 ? Long.parseLong(args[0]) : 1000000;
 
-		final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+        final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
-		// count how many of the samples would randomly fall into
-		// the unit circle
-		DataSet<Long> count =
-				env.generateSequence(1, numSamples)
-				.map(new Sampler())
-				.reduce(new SumReducer());
+        // count how many of the samples would randomly fall into
+        // the unit circle
+        DataSet<Long> count =
+                env.generateSequence(1, numSamples)
+                        .map(new Sampler())
+                        .reduce(new SumReducer());
 
-		long theCount = count.collect().get(0);
+        long theCount = count.collect().get(0);
 
-		System.out.println("We estimate Pi to be: " + (theCount * 4.0 / numSamples));
-	}
+        System.out.println("We estimate Pi to be: " + (theCount * 4.0 / numSamples));
+    }
 
-	//*************************************************************************
-	//     USER FUNCTIONS
-	//*************************************************************************
-
-
-	/**
-	 * Sampler randomly emits points that fall within a square of edge x * y.
-	 * It calculates the distance to the center of a virtually centered circle of radius x = y = 1
-	 * If the distance is less than 1, then and only then does it returns a 1.
-	 */
-	public static class Sampler implements MapFunction<Long, Long> {
-
-		@Override
-		public Long map(Long value) {
-			double x = Math.random();
-			double y = Math.random();
-			return (x * x + y * y) < 1 ? 1L : 0L;
-		}
-	}
+    //*************************************************************************
+    //     USER FUNCTIONS
+    //*************************************************************************
 
 
-	/**
-	 * Simply sums up all long values.
-	 */
-	public static final class SumReducer implements ReduceFunction<Long>{
+    /**
+     * Sampler randomly emits points that fall within a square of edge x * y.
+     * It calculates the distance to the center of a virtually centered circle of radius x = y = 1
+     * If the distance is less than 1, then and only then does it returns a 1.
+     */
+    public static class Sampler implements MapFunction<Long, Long> {
 
-		@Override
-		public Long reduce(Long value1, Long value2) {
-			return value1 + value2;
-		}
-	}
+        @Override
+        public Long map(Long value) {
+            double x = Math.random();
+            double y = Math.random();
+            return (x * x + y * y) < 1 ? 1L : 0L;
+        }
+    }
+
+
+    /**
+     * Simply sums up all long values.
+     */
+    public static final class SumReducer implements ReduceFunction<Long> {
+
+        @Override
+        public Long reduce(Long value1, Long value2) {
+            return value1 + value2;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.xavier.flink.tutorial.chapter8.function;
 
 import org.apache.flink.table.annotation.DataTypeHint;
+import org.apache.flink.table.functions.FunctionContext;
 import org.apache.flink.table.functions.ScalarFunction;
 
 import java.sql.Timestamp;

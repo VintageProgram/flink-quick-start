@@ -41,6 +41,7 @@ public class ReduceFunctionExample {
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        // use EventTime
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
         // 读入股票数据流
