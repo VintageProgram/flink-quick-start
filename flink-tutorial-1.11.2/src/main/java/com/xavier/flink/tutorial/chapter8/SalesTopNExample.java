@@ -53,6 +53,7 @@ public class SalesTopNExample {
 
         tEnv.createTemporaryView("sales", itemSalesTable);
 
+        // PARTITION BY col1[, col2...]: 指定分区列，每个分区都将会有一个 Top-N 结果。
         // 选择每个分类中销量前 3 的产品
         Table topN = tEnv.sqlQuery(
                 "SELECT * " +
